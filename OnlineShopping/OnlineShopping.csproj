@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Mapping\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 

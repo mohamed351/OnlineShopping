@@ -15,6 +15,10 @@ namespace OnlineShopping.Repository.Implementation
         {
 
         }
+        public override void Delete(Category entity)
+        {
+            entity.IsDeleted = true;
+        }
 
     }
 }

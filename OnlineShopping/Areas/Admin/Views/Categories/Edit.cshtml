@@ -1,13 +1,15 @@
 ﻿@model OnlineShopping.Models.Category
-<form id="CategoryForm" method="post" data-ajax="true" data-ajax-success="categoryAdded" data-ajax-url="/Admin/Categories/Create">
+<form id="CategoryForm" method="post" data-ajax="true" data-ajax-success="categoryEdited" data-ajax-url="/Admin/Categories/Edit">
 
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create Category</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="IsDeleted" />
         <div class="modal-body">
             <div class="form-group row">
                 <label for="fname" class="col-sm-3 text-right control-label col-form-label">Name</label>

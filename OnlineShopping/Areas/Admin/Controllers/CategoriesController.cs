@@ -39,12 +39,52 @@ namespace OnlineShopping.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest("Instructor Data is Not complete");
+                return BadRequest("Category Data is not completed");
             }
             _unitOfWork.Categories.Add(category);
             _unitOfWork.Completed();
 
             return Created("", category);
+        }
+        [HttpGet]
+        public ActionResult Edit(int? ID)
+        {
+            if(ID == null)
+            {
+                return BadRequest("The ID is not Specified");
+            }
+           var cateogry = _unitOfWork.Categories.GetByID(ID.Value);
+            return PartialView(cateogry);
+
+        }
+        public ActionResult Edit(Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Category Data is not completed");
+            }
+            _unitOfWork.Categories.Edit(category);
+            _unitOfWork.Completed();
+            return NoContent();
+        }
+        [HttpPost]
+        public ActionResult Delete(int? ID)
+        {
+            if (ID == null)
+            {
+                return BadRequest("The ID is not specified");
+            }
+            var book = _unitOfWork.Categories.GetByID(ID.Value);
+            if (book == null)
+            {
+                return NotFound("The Category doesn't Exist");
+            }
+            _unitOfWork.Categories.Delete(book);
+            _unitOfWork.Completed();
+
+
+            return NoContent();
+
         }
 
     }
