@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShopping.Models;
 
 namespace OnlineShopping.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811152723_AddCompanyAddDescriptionForProduct")]
+    partial class AddCompanyAddDescriptionForProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,12 +245,6 @@ namespace OnlineShopping.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ArabicName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -285,9 +281,6 @@ namespace OnlineShopping.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductSizeID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
@@ -300,26 +293,9 @@ namespace OnlineShopping.Migrations
 
                     b.HasIndex("CompanyID");
 
-                    b.HasIndex("ProductSizeID");
-
                     b.HasIndex("QuantityTypeID");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("OnlineShopping.Models.ProductSize", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ProductSize");
                 });
 
             modelBuilder.Entity("OnlineShopping.Models.QuantityType", b =>
@@ -328,9 +304,6 @@ namespace OnlineShopping.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ArabicName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -408,12 +381,6 @@ namespace OnlineShopping.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShopping.Models.ProductSize", "ProductSize")
-                        .WithMany("Products")
-                        .HasForeignKey("ProductSizeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("OnlineShopping.Models.QuantityType", "QuantityType")
                         .WithMany("Products")
                         .HasForeignKey("QuantityTypeID")
@@ -424,8 +391,6 @@ namespace OnlineShopping.Migrations
 
                     b.Navigation("Company");
 
-                    b.Navigation("ProductSize");
-
                     b.Navigation("QuantityType");
                 });
 
@@ -435,11 +400,6 @@ namespace OnlineShopping.Migrations
                 });
 
             modelBuilder.Entity("OnlineShopping.Models.Company", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("OnlineShopping.Models.ProductSize", b =>
                 {
                     b.Navigation("Products");
                 });

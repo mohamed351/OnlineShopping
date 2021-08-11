@@ -1,0 +1,52 @@
+﻿
+
+@section styles{
+    <link rel="stylesheet" href="~/dashboard/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" />
+}
+
+
+<div class="card">
+
+
+    <div class="card-body">
+        <div class="card-title d-flex justify-content-between">
+            <h4>Quantity Type</h4>
+            <button id="createInstructor" class="btn btn-primary mt2">Create new Company</button>
+        </div>
+        <div class="table-responsive">
+            <table id="categoryTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Arabic Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="companyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" id="model-content">
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/dashboard/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script src="~/dashboard/custom/alpha-data-table.js"></script>
+    <script src="~/dashboard/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/dashboard/jquery-validation/jquery.validate.js"></script>
+    <script src="~/dashboard/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/dashboard/sweet-alert/sweetalert.min.js"></script>
+    <script src="~/dashboard/bootbox/bootbox.js"></script>
+    <script src="~/dashboard/crud/company.js"></script>
+    
+
+}

@@ -17,8 +17,14 @@ namespace OnlineShopping.UnitOfWork
         {
             this.context = context;
             this.Categories = new CategoryRepository(context);
+            this.Companies = new CompanyRepository(context);
+            this.QuantityTypes = new QuantityTypeRepository(context);
         }
-        public ICategoryRepository Categories { get; set; }
+
+
+        public ICategoryRepository Categories { get;  }
+        public ICompanyRepository Companies { get; }
+        public IQuantityTypeRepository QuantityTypes { get; }
 
         public int Completed()
         {

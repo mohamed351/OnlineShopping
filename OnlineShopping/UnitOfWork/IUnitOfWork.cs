@@ -8,7 +8,9 @@ namespace OnlineShopping.UnitOfWork
 {
     public interface IUnitOfWork:IDisposable
     {
-        public ICategoryRepository Categories { get; set; }
+        public ICategoryRepository Categories { get;  }
+        public ICompanyRepository Companies { get; }
+        public IQuantityTypeRepository QuantityTypes { get;  }
         int Completed();
         
     }

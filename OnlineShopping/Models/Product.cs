@@ -17,6 +17,17 @@ namespace OnlineShopping.Models
         [ForeignKey(nameof(Category))]
         public int CateogryID { get; set; }
 
+        [ForeignKey(nameof(Company))]
+        public int CompanyID { get; set; }
+        public Company Company { get; set; }
+
+
+        public int ProductSizeID { get; set; }
+        public ProductSize ProductSize  { get; set; }
+
+        public string Description { get; set; }
+
+
         public string ImageURL { get; set; }
         public bool IsDeleted { get; set; }
        
