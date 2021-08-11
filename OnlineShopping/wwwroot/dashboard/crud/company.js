@@ -72,7 +72,7 @@
         function Added(data) {
 
             $("#companyModel").modal("hide");
-            swal("successful added Quantity Type", "", "success");
+            swal("successful added Company", "", "success");
             tableContent.ajax.reload();
 
 

@@ -53,17 +53,17 @@ namespace OnlineShopping.Areas.Admin.Controllers
             {
                 return BadRequest("The ID is not Specified");
             }
-            var cateogry = _unitOfWork.QuantityTypes.GetByID(ID.Value);
+            var cateogry = _unitOfWork.Companies.GetByID(ID.Value);
             return PartialView(cateogry);
 
         }
-        public ActionResult Edit(QuantityType quantityType)
+        public ActionResult Edit(Company company)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Company is not completed");
             }
-            _unitOfWork.QuantityTypes.Edit(quantityType);
+            _unitOfWork.Companies.Edit(company);
             _unitOfWork.Completed();
             return NoContent();
         }
@@ -74,12 +74,12 @@ namespace OnlineShopping.Areas.Admin.Controllers
             {
                 return BadRequest("Company is not specified");
             }
-            var quantityType = _unitOfWork.QuantityTypes.GetByID(ID.Value);
-            if (quantityType == null)
+            var company = _unitOfWork.Companies.GetByID(ID.Value);
+            if (company == null)
             {
                 return NotFound("Company Type doesn't Exist");
             }
-            _unitOfWork.QuantityTypes.Delete(quantityType);
+            _unitOfWork.Companies.Delete(company);
             _unitOfWork.Completed();
 
 
