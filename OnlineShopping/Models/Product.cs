@@ -22,7 +22,7 @@ namespace OnlineShopping.Models
         public Company Company { get; set; }
 
 
-        public int ProductSizeID { get; set; }
+        public int? ProductSizeID { get; set; }
         public ProductSize ProductSize  { get; set; }
 
         public string Description { get; set; }

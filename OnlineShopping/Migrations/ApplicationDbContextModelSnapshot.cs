@@ -285,7 +285,7 @@ namespace OnlineShopping.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductSizeID")
+                    b.Property<int?>("ProductSizeID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Quantity")
@@ -410,9 +410,7 @@ namespace OnlineShopping.Migrations
 
                     b.HasOne("OnlineShopping.Models.ProductSize", "ProductSize")
                         .WithMany("Products")
-                        .HasForeignKey("ProductSizeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductSizeID");
 
                     b.HasOne("OnlineShopping.Models.QuantityType", "QuantityType")
                         .WithMany("Products")

@@ -1,0 +1,71 @@
+﻿
+
+@section styles{
+    <link rel="stylesheet" href="~/dashboard/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" />
+}
+
+
+<div class="card">
+
+
+    <div class="card-body">
+        <div class="card-title d-flex justify-content-between">
+            <h4> Products</h4>
+            <a asp-action="Create" asp-controller="Products" class="btn btn-primary mt2">Create new Product</a>
+        </div>
+        <div class="table-responsive">
+            <table id="productTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Company</th>
+                        <th>Quantity</th>
+                        <th>Quantity Type</th>
+                        <th>Category</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+    <script src="~/dashboard/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script src="~/dashboard/custom/alpha-data-table.js"></script>
+    <script src="~/dashboard/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/dashboard/jquery-validation/jquery.validate.js"></script>
+    <script src="~/dashboard/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/dashboard/sweet-alert/sweetalert.min.js"></script>
+    <script src="~/dashboard/bootbox/bootbox.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            tablePlugin("#productTable", "/Admin/Products/GetProducts",
+                [{ data: "name" },
+                { data: "price" },
+                { data: "company" },
+                { data: "quantity" },
+                { data: "quantityType" },
+                { data: "category" },
+                {
+                    data: "id", render: function (data) {
+                        return `
+                              <a class='btn btn-primary' href='/Admin/Products/Edit/${data}'>Edit </a>
+                              <a class='btn btn-danger' href='/Admin/Products/Delete/${data}'>Delete </a>
+                        `
+                    }
+                }]);
+        });
+    </script>
+   
+
+
+}

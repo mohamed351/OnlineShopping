@@ -19,12 +19,16 @@ namespace OnlineShopping.UnitOfWork
             this.Categories = new CategoryRepository(context);
             this.Companies = new CompanyRepository(context);
             this.QuantityTypes = new QuantityTypeRepository(context);
+            this.Products = new ProductRepository(context);
+            
         }
 
 
         public ICategoryRepository Categories { get;  }
         public ICompanyRepository Companies { get; }
         public IQuantityTypeRepository QuantityTypes { get; }
+
+        public IProductRepository Products { get; }
 
         public int Completed()
         {

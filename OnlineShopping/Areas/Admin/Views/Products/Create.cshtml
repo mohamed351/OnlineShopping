@@ -1,0 +1,114 @@
+﻿@model OnlineShopping.Areas.Admin.ViewModels.ProductViewModel
+
+@section styles{
+
+    <link href="~/dashboard/image-cropper/css/jquery.Jcrop.css" rel="stylesheet" />
+    <link href="~/dashboard/image-cropper/css/style.css" rel="stylesheet" />
+<style>
+    .panel-body{
+        background-image:url("~/dashboard/photos/product-placeholder.jpg")
+    }
+</style>
+
+}
+<div class="card">
+    <div class="card-body">
+
+        <h4>Create Product</h4>
+        <hr />
+        <form asp-action="Create">
+            <div class="row">
+                <div class="col-md-7">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"> Quantity Type</label>
+                        @Html.DropDownList("QuantityTypeID", null, new { @class = "form-control" })
+                        <span asp-validation-for="QuantityTypeID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Category </label>
+                        @Html.DropDownList("CateogryID", null, new { @class = "form-control" })
+                        <span asp-validation-for="CateogryID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"> Company</label>
+                        @Html.DropDownList("CompanyID", null, new { @class = "form-control" })
+                        <span asp-validation-for="CompanyID" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                  
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+
+                </div>
+
+                <div class="col-md-5">
+
+                    <div class="panel panel-body" style="display:flex;justify-content:center">
+                        <input type="hidden" asp-for="ImageBase64" />
+                        <div class="span4 cropme" style="width: 250px; height: 250px;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+
+    <script src="~/dashboard/tinymce/tinymce.min.js"></script>
+    <script src="~/dashboard/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/dashboard/image-cropper/scripts/jquery.Jcrop.js"></script>
+    <script src="~/dashboard/image-cropper/scripts/jquery.SimpleCropper.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            tinymce.init({
+                selector: '#Description',
+                plugins: 'table',
+                menubar: 'table'
+            });
+            $('.cropme').simpleCropper();
+            $("form").submit(function () {
+                $("#ImageBase64").val($(".cropme img").attr("src"));
+            });
+
+
+        });
+       
+
+
+    </script>
+}

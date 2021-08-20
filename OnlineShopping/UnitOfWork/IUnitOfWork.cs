@@ -11,6 +11,7 @@ namespace OnlineShopping.UnitOfWork
         public ICategoryRepository Categories { get;  }
         public ICompanyRepository Companies { get; }
         public IQuantityTypeRepository QuantityTypes { get;  }
+        public IProductRepository Products { get; }
         int Completed();
         
     }
