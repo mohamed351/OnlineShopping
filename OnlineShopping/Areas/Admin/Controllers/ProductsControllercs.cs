@@ -100,10 +100,42 @@ namespace OnlineShopping.Areas.Admin.Controllers
             {
                 return View(productEditViewModel);
             }
-            
+           var OldProduct= unitOfWork.Products.GetByIDWithAsNoTracking(a => a.ID == productEditViewModel.ID);
+            OldProduct.Name = productEditViewModel.Name;
+            OldProduct.Price = productEditViewModel.Price;
+            OldProduct.Quantity = productEditViewModel.Quantity;
+            OldProduct.CateogryID = productEditViewModel.CateogryID;
+            OldProduct.CompanyID = productEditViewModel.CompanyID;
+            OldProduct.QuantityTypeID = productEditViewModel.QuantityTypeID;
+            OldProduct.Description = productEditViewModel.Description;
+           
+            if(!String.IsNullOrEmpty(productEditViewModel.ImageBase64))
+            {
+                OldProduct.ImageURL = ConvertMainImage(productEditViewModel.ImageBase64);
+            }
+            unitOfWork.Products.Edit(OldProduct);
+            unitOfWork.Completed();
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest("The ID is not Found");
+            }
+            var product = unitOfWork.Products.GetByID(id.Value);
+            if (product == null)
+            {
+                return NotFound("The Product is not found");
+            }
+            unitOfWork.Products.Delete(product);
+            unitOfWork.Completed();
+            return Json(product);
+
+        }
+
 
         private string ConvertMainImage(string imageBase64)
         {

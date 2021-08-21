@@ -22,6 +22,7 @@ namespace OnlineShopping.Repository.Interfaces
         public void Delete(TEntity entity);
 
         public DataTableViewModel<TEntity> GetDataTable(int start, int lenght, Func<TEntity, bool> search, Func<TEntity, TKey> OrderBy);
+        public TEntity GetByIDWithAsNoTracking(Func<TEntity, bool> func);
 
     }
 

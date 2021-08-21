@@ -43,6 +43,11 @@ namespace OnlineShopping.Repository.Implementation
                 recordsTotal = count
             };
         }
+        public override void Delete(Product entity)
+        {
+            entity.IsDeleted = true;
+
+        }
     }
     public class ProductSelectViewModel
     {

@@ -68,6 +68,9 @@ namespace OnlineShopping.Repository.Implementation
             return _context.Set<TEntity>();
         }
 
-
+        public TEntity GetByIDWithAsNoTracking(Func<TEntity,bool> func)
+        {
+            return _context.Set<TEntity>().AsNoTracking().FirstOrDefault(func);
+        }
     }
 }

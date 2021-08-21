@@ -48,7 +48,7 @@
 
     <script>
         $(document).ready(function () {
-            tablePlugin("#productTable", "/Admin/Products/GetProducts",
+          globalTable =  tablePlugin("#productTable", "/Admin/Products/GetProducts",
                 [{ data: "name" },
                 { data: "price" },
                 { data: "company" },
@@ -59,10 +59,35 @@
                     data: "id", render: function (data) {
                         return `
                               <a class='btn btn-primary' href='/Admin/Products/Edit/${data}'>Edit </a>
-                              <a class='btn btn-danger' href='/Admin/Products/Delete/${data}'>Delete </a>
+                              <button class='btn btn-danger delete-button' data-id=${data}>Delete </button>
                         `
                     }
-                }]);
+                  }]);
+
+            $(document).on("click", ".delete-button", function () {
+                let productId = $(this).attr("data-id");
+                bootbox.confirm("Are you sure to Delete this Product", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Admin/Products/Delete",
+                            method: "POST",
+                            data: {
+                                "id": productId,
+                            },
+                            success: function (result) {
+                                if (result) {
+                                    globalTable.ajax.reload();
+                                }
+                            }
+                        })
+                       
+                    }
+                });
+             
+            })
+          
+
+
         });
     </script>
    
