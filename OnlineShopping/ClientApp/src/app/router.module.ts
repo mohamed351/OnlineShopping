@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {BaseLayoutComponent} from './shared/layouts/base-layout/base-layout.component';
-
+import {ShoppingAppComponent} from './shared/layouts/shopping-app/shopping-app.component';
 const baseLayoutRouting: Routes = [
   {
     path:"",
@@ -9,6 +9,12 @@ const baseLayoutRouting: Routes = [
   }
 
 ];
+const shoppingAppRouting:Routes=[
+  {
+    path:"",
+    loadChildren:()=>import("./products/products.module").then(m=>m.ProductsModule)
+  }
+]
 
 const routes: Routes = [
   {
@@ -16,6 +22,11 @@ const routes: Routes = [
     component: BaseLayoutComponent,
     children: baseLayoutRouting
   },
+  {
+    path:"products",
+    component:ShoppingAppComponent,
+    children:shoppingAppRouting
+  }
 
 
 ];

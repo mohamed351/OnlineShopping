@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.DTO;
 using OnlineShopping.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,42 @@ namespace OnlineShopping.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IHttpContextAccessor accessor;
 
-        public ProductsController(IUnitOfWork unitOfWork)
+        public ProductsController(IUnitOfWork unitOfWork,IHttpContextAccessor accessor)
         {
             _unitOfWork = unitOfWork;
+            this.accessor = accessor;
         }
         [HttpGet]
         public IActionResult GetProducts()
         {
-            _unitOfWork.Products.GetAll();
-            return Ok();
+            var products = _unitOfWork.Products.GetByCondition(a=>a.IsDeleted == false).Select(a => new ProductCategoryDTO()
+            {
+                ID = a.ID,
+                CateogryID = a.CateogryID,
+                Image = accessor.HttpContext.Request.Scheme + "://" + accessor.HttpContext.Request.Host + "/api/Picture?name=" + a.ImageURL,
+                Name = a.Name,
+                Price = a.Price
+            });
+            return Ok(products);
+        }
+        [HttpGet("cateogry/{id?}")]
+        public IActionResult GetProductCategory(int? id)
+        {
+            if(id == null)
+            {
+                return BadRequest("The ID is not specified");
+            }
+
+            
+           return Ok( _unitOfWork.Products.GetByCondition(a => a.CateogryID == id && a.IsDeleted ==false).Select(a=> new ProductCategoryDTO() { 
+               ID =a.ID,
+               CateogryID = a.CateogryID,
+               Image =accessor.HttpContext.Request.Scheme+"://" +accessor.HttpContext.Request.Host+"/api/Picture?name="+a.ImageURL,
+               Name = a.Name,
+               Price= a.Price
+           }));
         }
     }
 }

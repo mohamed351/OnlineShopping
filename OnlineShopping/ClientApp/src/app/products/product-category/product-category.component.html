@@ -1,0 +1,49 @@
+
+
+
+<div class="container mt-2">
+
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of productCategory">
+      <mat-card class="example-card">
+        <mat-card-header>
+
+          <mat-card-title>{{item.name}}</mat-card-title>
+
+        </mat-card-header>
+        <img mat-card-image [src]="item.image" width="150"  [alt]="item.name">
+        <mat-card-content>
+          <p class="price-product">{{item.price}} LE</p>
+        </mat-card-content>
+        <mat-card-actions class="actions-desktop">
+          <button (click)="addCart(item.id,item.name,item.image)" mat-raised-button color="primary">
+            <mat-icon class="material-icons">
+              shopping_cart
+            </mat-icon>
+            </button>
+
+          <button mat-raised-button color="warn">
+            <mat-icon class="material-icons">
+              article
+            </mat-icon>
+            </button>
+        </mat-card-actions>
+
+
+        <mat-card-actions class=" actions-mobile" >
+          <button (click)="addCart(item.id,item.name,item.image)" mat-raised-button color="primary">
+            <mat-icon class="material-icons">
+              shopping_cart
+            </mat-icon>
+            </button>
+
+          <button mat-raised-button color="warn">
+            <mat-icon class="material-icons">
+              article
+            </mat-icon>
+            </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
