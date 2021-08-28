@@ -10,12 +10,21 @@ export class CartService {
 
   addProductCart(productid:number, productName:string , productImage:string){
    if( localStorage.getItem("cart")){
-    let  oldData = JSON.parse(  localStorage.getItem("cart"));
-     oldData.push({
-      productid,
-      productName,
-      productImage
+    let  oldData:any[] = JSON.parse(  localStorage.getItem("cart"));
+    let  oldProduct = oldData.find(a=>a.productid == productid);
+    if(oldProduct){
+      oldProduct.quantity++;
+    }
+    else{
+      oldData.push({
+    productid,
+    productName,
+    productImage,
+    quantity:1
      });
+
+    }
+
      localStorage.setItem("cart",JSON.stringify(oldData));
    }
    else{
@@ -23,7 +32,8 @@ export class CartService {
      newArray.push({
       productid,
       productName,
-      productImage
+      productImage,
+      quantity:1
      })
      localStorage.setItem("cart",JSON.stringify(newArray));
    }
