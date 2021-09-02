@@ -49,5 +49,20 @@ export class CartService {
       return 0;
     }
   }
+  getCartElements():ProductCartElements[] |null{
+    if(localStorage.getItem("cart")){
+      return JSON.parse(localStorage.getItem("cart"));
+    }
+    else{
+      return null;
+    }
+  }
 
+}
+export interface ProductCartElements{
+  productid:number;
+  productName:string;
+  productImage:string;
+  quantity:number;
+  price:number |null;
 }

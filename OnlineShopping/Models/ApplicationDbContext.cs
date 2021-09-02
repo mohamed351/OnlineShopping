@@ -19,5 +19,6 @@ namespace OnlineShopping.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<QuantityType> QuantityTypes { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<AppUser> ApplicationUser { get; set; }
     }
 }

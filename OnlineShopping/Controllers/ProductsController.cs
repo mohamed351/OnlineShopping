@@ -16,7 +16,7 @@ namespace OnlineShopping.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IHttpContextAccessor accessor;
 
-        public ProductsController(IUnitOfWork unitOfWork,IHttpContextAccessor accessor)
+        public ProductsController(IUnitOfWork unitOfWork, IHttpContextAccessor accessor)
         {
             _unitOfWork = unitOfWork;
             this.accessor = accessor;
@@ -24,7 +24,7 @@ namespace OnlineShopping.Controllers
         [HttpGet]
         public IActionResult GetProducts()
         {
-            var products = _unitOfWork.Products.GetByCondition(a=>a.IsDeleted == false).Select(a => new ProductCategoryDTO()
+            var products = _unitOfWork.Products.GetByCondition(a => a.IsDeleted == false).Select(a => new ProductCategoryDTO()
             {
                 ID = a.ID,
                 CateogryID = a.CateogryID,
@@ -33,6 +33,20 @@ namespace OnlineShopping.Controllers
                 Price = a.Price
             });
             return Ok(products);
+        }
+        [HttpGet("{id?}")]
+        public IActionResult GetProductByID(int ? id)
+        {
+            if(id == null)
+            {
+                return BadRequest();
+            }
+            var product = _unitOfWork.Products.GetByID(id.Value);
+            if(product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
         [HttpGet("cateogry/{id?}")]
         public IActionResult GetProductCategory(int? id)
@@ -51,5 +65,6 @@ namespace OnlineShopping.Controllers
                Price= a.Price
            }));
         }
+        
     }
 }

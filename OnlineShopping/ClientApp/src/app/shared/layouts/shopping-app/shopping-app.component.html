@@ -11,6 +11,7 @@
       <a mat-list-item href="#">Link 2</a>
       <a    href="#">Link 3</a> -->
       <a mat-list-item *ngFor="let item of categories" [routerLink]="[item.id]" > {{item.name}} </a>
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -31,12 +32,23 @@
 
      <div style="display: flex; justify-content: space-between; width: 95%;" >
 
-       <div>
+       <div style="flex:1">
       <img src="../../../../assets/1.png" width="100" alt="">
     </div>
 
-    <div class="mt-2">
-      <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon>
+    <div class="d-flex desktop-search" style="flex: 1.5;" >
+      <input type="text" class="form-control" placeholder="Search"/>
+      <select>
+        <option value="0">Produtct Name</option>
+        <option value="1">Category</option>
+        <option value="2">Company</option>
+      </select>
+      <button>S</button>
+    </div>
+
+    <div class="mt-2 cart-holder"  style="flex:1;text-align: right;">
+      <a routerLink="cart"> <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a>
+
 
     </div>
   </div>

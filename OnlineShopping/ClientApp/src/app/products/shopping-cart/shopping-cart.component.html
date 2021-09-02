@@ -1,0 +1,68 @@
+<ng-container *ngIf="ProductCartElements == null then noElement else elements">
+
+</ng-container>
+<ng-template #noElement>
+  <p class="text-center"> No Item in Cart</p>
+</ng-template>
+
+<ng-template #elements>
+<section class="container">
+  <section class="row">
+    <section class="col-md-6 mt-3">
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item">
+          <div  class="d-cart-item">
+            <div>
+              <p> <strong> Image </strong></p>
+
+            </div>
+            <div>
+            <p><strong> Quantity</strong> </p>
+          </div>
+          <div>
+            <p><strong> Price</strong> </p>
+          </div>
+          <div>
+            <p><strong> Product Name </strong></p>
+          </div>
+
+
+          </div>
+
+        </li>
+        <li class="list-group-item" *ngFor="let item of ProductCartElements">
+          <div class="d-cart-item" >
+            <div>
+            <img [src]="item.productImage" width="100" [alt]="item.productName" />
+          </div>
+
+
+            <div>
+            <p>{{item.quantity}}</p>
+          </div>
+          <div>
+            <p> {{item.price}} </p>
+          </div>
+          <div>
+            <p>{{item.productName}}</p>
+          </div>
+
+          </div>
+
+        </li>
+
+      </ul>
+    </section>
+  <section class="col-md-6 mt-3">
+    <div class="card">
+      <p class="text-center total-price-format">
+      Total Price : {{calculateTotalPrice()}}
+    </p>
+    <button mat-raised-button color="primary"> Checkout</button>
+    </div>
+  </section>
+
+</section>
+</section>
+</ng-template>

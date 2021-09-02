@@ -15,6 +15,9 @@ export class ProductService {
   public GetProductByCategory(id:number){
     return this.http.get<ProductCategory[]>(`/api/Products/cateogry/${id}`);
   }
+  public GetProductByID(id:number){
+    return this.http.get<any>(`/api/Products/${id}`);
+  }
 
 
 }
