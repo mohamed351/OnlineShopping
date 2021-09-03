@@ -19,9 +19,9 @@ namespace OnlineShopping.Repository.Implementation
             {
                 _context = context;
             }
-            public async Task<AppUser> Login(string userName, string password)
+            public async Task<AppUser> Login(string phoneNumber, string password)
             {
-                var user = await _context.ApplicationUser.FirstOrDefaultAsync(user => user.UserName == userName);
+                var user = await _context.ApplicationUser.FirstOrDefaultAsync(user => user.PhoneNumber == phoneNumber);
                 if (user == null)
                     return null;
                 if (!VerifyPassword(user.PasswordHash, user.PasswordSalt, password))
@@ -56,9 +56,9 @@ namespace OnlineShopping.Repository.Implementation
 
             }
 
-            public async Task<bool> UserExist(string userName)
+            public async Task<bool> UserExist(string phoneNumber)
             {
-                return !await _context.Users.AnyAsync(a => a.UserName == userName);
+                return !await _context.Users.AnyAsync(a => a.PhoneNumber == phoneNumber);
             }
 
             private void CreatePasswordHash(ref AppUser user, string password)

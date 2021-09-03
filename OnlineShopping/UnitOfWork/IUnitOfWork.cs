@@ -12,6 +12,7 @@ namespace OnlineShopping.UnitOfWork
         public ICompanyRepository Companies { get; }
         public IQuantityTypeRepository QuantityTypes { get;  }
         public IProductRepository Products { get; }
+        public IAuthRepository UserAuth { get; }
         int Completed();
         
     }

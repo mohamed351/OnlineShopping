@@ -20,6 +20,7 @@ namespace OnlineShopping.UnitOfWork
             this.Companies = new CompanyRepository(context);
             this.QuantityTypes = new QuantityTypeRepository(context);
             this.Products = new ProductRepository(context);
+            this.UserAuth = new AuthRepository(context);
             
         }
 
@@ -29,6 +30,8 @@ namespace OnlineShopping.UnitOfWork
         public IQuantityTypeRepository QuantityTypes { get; }
 
         public IProductRepository Products { get; }
+
+        public IAuthRepository UserAuth { get; }
 
         public int Completed()
         {
