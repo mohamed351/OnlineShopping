@@ -39,17 +39,25 @@
     <div class="d-flex desktop-search" style="flex: 1.5;" >
       <input type="text" class="form-control" placeholder="Search"/>
       <div class="custom-select">
-      <select>
+      <select class="select-selected">
         <option value="0">Produtct Name</option>
         <option value="1">Category</option>
         <option value="2">Company</option>
       </select>
-      <button>S</button>
+      <button mat-icon-button	>
+        <mat-icon>
+          search
+        </mat-icon>
+      </button>
     </div>
     </div>
 
     <div class="mt-2 cart-holder"  style="flex:1;text-align: right;">
-      <a routerLink="cart"> <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a>
+      <ul class="customer-li">
+        <li>      <a routerLink="cart"> <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a></li>
+        <li>  <a routerLink="cart"> <mat-icon  >account_circle</mat-icon></a></li>
+      </ul>
+
 
 
     </div>
