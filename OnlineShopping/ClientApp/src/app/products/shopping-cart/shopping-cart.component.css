@@ -17,4 +17,32 @@
   font-weight: 800;
   padding: 15px;
 }
+.counter-element{
+  display: flex;
+  justify-content: center;
+}
+.counter-element button{
+  max-width: 2rem !important;
+  padding: 0.2rem !important;
+  width: 2rem;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 0.2rem;
+}
+.counter-element p{
+  flex: 0.5;
+  margin-bottom: 0px;
+}
+.button-increse{
+  background-color: #50c837;
+}
 
+.button-decrese{
+  background-color: #D3342C;
+}
