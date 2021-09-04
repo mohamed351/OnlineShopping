@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShopping.DTO;
+using OnlineShopping.Models;
 using OnlineShopping.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace OnlineShopping.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult> Register(RegisterUserDTO registerUserDTO)
         {
-            if (!await _authRepository.UserExist(registerUserDTO.UserName))
+            if (!await _authRepository.UserExist(registerUserDTO.Phone))
             {
                 return BadRequest("The user already exist");
             }
@@ -67,7 +68,7 @@ namespace OnlineShopping.Controllers
             var userResult = await _authRepository.Registration(new AppUser()
             {
                 Email = registerUserDTO.Email,
-                Phone = registerUserDTO.Phone,
+                PhoneNumber = registerUserDTO.Phone,
                 IsDeleted = false,
                 UserName = registerUserDTO.UserName
             }, registerUserDTO.Password);
