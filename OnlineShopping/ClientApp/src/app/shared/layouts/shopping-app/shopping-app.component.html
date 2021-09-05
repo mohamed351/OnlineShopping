@@ -55,7 +55,7 @@
     <div class="mt-2 cart-holder"  style="flex:1;text-align: right;">
       <ul class="customer-li">
         <li>      <a routerLink="cart"> <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a></li>
-        <li>  <a routerLink="cart"> <mat-icon  >account_circle</mat-icon></a></li>
+        <li>  <a [routerLink]="['/authication','login']"> <mat-icon  >account_circle</mat-icon></a></li>
       </ul>
 
 

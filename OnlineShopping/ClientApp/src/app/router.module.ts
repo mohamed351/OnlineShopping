@@ -23,6 +23,10 @@ const routes: Routes = [
     children: baseLayoutRouting
   },
   {
+    path:'authication',
+    loadChildren:()=> import("./auth/auth.module").then(m=>m.AuthModule)
+  },
+  {
     path:"products",
     component:ShoppingAppComponent,
     children:shoppingAppRouting
