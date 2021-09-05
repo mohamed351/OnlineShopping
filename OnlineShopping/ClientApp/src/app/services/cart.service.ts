@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ProductCategory } from '../models/productCategory';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  public subject:Subject<ProductCartElements[]> = new Subject<ProductCartElements[]>();
   constructor() { }
 
   addProductCart(productid:number, productName:string , productImage:string){
@@ -56,6 +57,26 @@ export class CartService {
     else{
       return null;
     }
+  }
+  Increse(productId:number){
+  let productArray =  JSON.parse( localStorage.getItem("cart"));
+   let newData =JSON.stringify(  productArray.map(a=> a.productid == productId ? {...a,quantity:a.quantity +1 }:a));
+    localStorage.setItem("cart",newData);
+    this.subject.next(JSON.parse(localStorage.getItem("cart")));
+  }
+  decrese(productId:number){
+    let productArray =  JSON.parse( localStorage.getItem("cart"));
+     let newData:ProductCartElements[] =  productArray.map(a=> a.productid == productId ? {...a,quantity:  a.quantity -1 }:a);
+     if( newData.find(a=>a.productid == productId).quantity == 0){
+       newData = newData.filter(a=>a.productid != productId);
+     }
+
+      localStorage.setItem("cart",JSON.stringify(newData));
+
+      this.subject.next(JSON.parse(localStorage.getItem("cart")));
+  }
+  setPriceToLocalStorageWhenQuery(data:any){
+    localStorage.setItem("cart",JSON.stringify( data));
   }
 
 }

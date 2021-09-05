@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 
 import {CartService,ProductCartElements} from '../../services/cart.service';
@@ -9,9 +10,13 @@ import {CartService,ProductCartElements} from '../../services/cart.service';
 })
 export class ShoppingCartComponent implements OnInit {
  public ProductCartElements:ProductCartElements[] |null = null;
+
   constructor(private cart:CartService, private product:ProductService) { }
 
   ngOnInit(): void {
+   this.cart.subject.subscribe(newUpdateCart=>{
+    this.ProductCartElements =  newUpdateCart;
+   });
     this.ProductCartElements = this.cart.getCartElements();
     for (const iterator of this.ProductCartElements) {
       this.product.GetProductByID(iterator.productid).subscribe(a=>{
@@ -26,7 +31,10 @@ export class ShoppingCartComponent implements OnInit {
            return   c
            }
         });
+        this.cart.setPriceToLocalStorageWhenQuery( this.ProductCartElements);
+
       });
+
 
     }
 
@@ -39,5 +47,15 @@ export class ShoppingCartComponent implements OnInit {
     }
     return number;
   }
+  increseValue(produtId:number){
+    this.cart.Increse(produtId);
+
+  }
+  decreseValue(productId:number){
+
+    this.cart.decrese(productId);
+
+  }
+
 
 }

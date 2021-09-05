@@ -39,10 +39,10 @@
 
 
             <div class="counter-element">
-              <button class="button-increse" > +</button>
-              <p class="text-center">{{item.quantity}}</p>
+              <button class="button-increse" (click)="increseValue(item.productid)" > +</button>
+              <p class="text-center ">{{item.quantity}}</p>
 
-              <button class="button-decrese" >-</button>
+              <button class="button-decrese"(click)="decreseValue(item.productid)">-</button>
           </div>
           <div>
             <p> {{item.price}} </p>
