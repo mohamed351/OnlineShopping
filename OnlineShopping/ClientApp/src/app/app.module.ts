@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './router.module';
 import { CartService } from './services/cart.service';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { CartService } from './services/cart.service';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+
   ],
-  providers: [CartService],
+  providers: [CartService,   AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
