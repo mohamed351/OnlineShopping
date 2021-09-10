@@ -13,7 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {HttpClientModule} from '@angular/common/http';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import { AvatarModule } from 'ngx-avatar';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -31,6 +32,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatListModule,
     HttpClientModule,
     MatBadgeModule,
+    AvatarModule,
+    MatMenuModule
   ],
   exports:[
     HeaderComponent,

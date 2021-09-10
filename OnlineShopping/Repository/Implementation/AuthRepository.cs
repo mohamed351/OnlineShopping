@@ -49,8 +49,8 @@ namespace OnlineShopping.Repository.Implementation
             {
 
                 CreatePasswordHash(ref user, password);
-                
-                await _context.SaveChangesAsync();
+            _context.ApplicationUser.Add(user);
+           var result = await _context.SaveChangesAsync();
                 return user;
 
 

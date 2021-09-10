@@ -71,7 +71,10 @@ namespace OnlineShopping.Controllers
                 Email = registerUserDTO.Email,
                 PhoneNumber = registerUserDTO.Phone,
                 IsDeleted = false,
-                UserName = registerUserDTO.UserName
+                UserName = registerUserDTO.UserName,
+                UserOrderType = UserOrderType.NormalUser,
+                Address = registerUserDTO.Address
+
             }, registerUserDTO.Password);
 
             var claims = new List<Claim>()

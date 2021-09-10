@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { CategoryService } from '../../services/category.service';
 import { Category } from 'src/app/models/category';
 import { CartService } from 'src/app/services/cart.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-shopping-app',
@@ -19,7 +20,10 @@ export class ShoppingAppComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private categoryService:CategoryService , public cart:CartService) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+    private categoryService:CategoryService ,
+    public cart:CartService,
+    public auth:AuthService) {}
   ngOnInit(): void {
     this.categoryService.GetCategory().subscribe(cate =>{
         this.categories = cate;

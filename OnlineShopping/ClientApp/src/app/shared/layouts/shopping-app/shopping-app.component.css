@@ -29,8 +29,11 @@
 .custom-select {
   position: relative;
   font-family: Arial;
+  align-self: center;
 }
-
+.desktop-search input{
+  align-self: center;
+}
 
 
 .select-selected {
@@ -89,4 +92,10 @@
 .customer-li li{
   margin-right: 10px;
   margin-left: 10px;
+}
+.avatar-icon{
+  vertical-align: text-bottom;
+}
+.shopping-cart-icon{
+  vertical-align: middle;
 }

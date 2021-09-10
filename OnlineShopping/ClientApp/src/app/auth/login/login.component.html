@@ -2,16 +2,16 @@
   <div class="card-center">
     <mat-card>
       <h2 class="text-center">Login</h2>
-      <form>
+      <form [formGroup]="form" (ngSubmit)="loginUser()">
 
         <mat-form-field class="form-control-element">
-          <mat-label>User Name</mat-label>
-          <input matInput type="text">
+          <mat-label>phone Number</mat-label>
+          <input formControlName="phoneNumber" matInput type="text">
         </mat-form-field>
 
         <mat-form-field  class="form-control-element">
           <mat-label>Password</mat-label>
-          <input matInput type="password" value="">
+          <input formControlName="password"  matInput type="password" value="">
         </mat-form-field>
       <button mat-raised-button color="primary">Login</button>
       <section class="text-center mt-2">

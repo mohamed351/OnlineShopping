@@ -32,7 +32,7 @@
 
      <div style="display: flex; justify-content: space-between; width: 95%;" >
 
-       <div style="flex:1">
+       <div style="flex:1;align-self: center;">
       <img src="../../../../assets/1.png" width="100" alt="">
     </div>
 
@@ -51,11 +51,23 @@
       </button>
     </div>
     </div>
-
     <div class="mt-2 cart-holder"  style="flex:1;text-align: right;">
       <ul class="customer-li">
-        <li>      <a routerLink="cart"> <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a></li>
-        <li>  <a [routerLink]="['/authication','login']"> <mat-icon  >account_circle</mat-icon></a></li>
+        <li class="shopping-cart-icon">      <a routerLink="cart"> <mat-icon [matBadge]="this.cart.cartCount()" matBadgeColor="warn">shopping_cart</mat-icon></a></li>
+        <li *ngIf="!this.auth.isAuthicated()">  <a [routerLink]="['/authication','login']"> <mat-icon  >account_circle</mat-icon></a></li>
+        <li class="avatar-icon" *ngIf="this.auth.isAuthicated()">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <ngx-avatar [size]="35" [name]="this.auth.getName()"></ngx-avatar>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="this.auth.logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Log out</span>
+            </button>
+
+          </mat-menu>
+
+         </li>
       </ul>
 
 
