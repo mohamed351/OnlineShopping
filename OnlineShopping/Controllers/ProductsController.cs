@@ -42,11 +42,22 @@ namespace OnlineShopping.Controllers
                 return BadRequest();
             }
             var product = _unitOfWork.Products.GetByID(id.Value);
+            var SingleProduct = new SingleProductSelectDTO()
+            {
+                Company = product.Company.Name,
+                Description = product.Description,
+                Price = product.Price,
+                ProductName = product.Category.Name,
+                CategoryName = product.Category.Name,
+                ProductID = product.ID,
+                Image = accessor.HttpContext.Request.Scheme + "://" + accessor.HttpContext.Request.Host + "/api/Picture?name=" + product.ImageURL
+            };
+
             if(product == null)
             {
                 return NotFound();
             }
-            return Ok(product);
+            return Ok(SingleProduct);
         }
         [HttpGet("cateogry/{id?}")]
         public IActionResult GetProductCategory(int? id)

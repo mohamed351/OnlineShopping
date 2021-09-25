@@ -21,7 +21,7 @@ export class ShoppingCartComponent implements OnInit {
     for (const iterator of this.ProductCartElements) {
       this.product.GetProductByID(iterator.productid).subscribe(a=>{
        this.ProductCartElements =  this.ProductCartElements.map(c=>{
-           if(c.productid == a.id){
+           if(c.productid == a.productID){
              return {
                ...c,
                price: a.price

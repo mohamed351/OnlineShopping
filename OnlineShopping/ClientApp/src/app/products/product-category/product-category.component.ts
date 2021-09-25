@@ -11,7 +11,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class ProductCategoryComponent implements OnInit {
 public  productCategory:ProductCategory[] = [];
 
-  constructor(private router:ActivatedRoute, public cart:CartService) { }
+  constructor(private router:ActivatedRoute, public cart:CartService, private activeRouter:Router) { }
 
   ngOnInit(): void {
     this.router.data.subscribe((data:Data)=>{
@@ -23,6 +23,10 @@ public  productCategory:ProductCategory[] = [];
 
   addCart(productNumber:number, productName:string,productImage:string){
     this.cart.addProductCart(productNumber,productName,productImage);
+  }
+  goToProduct(productNumber:number){
+    alert(productNumber);
+    this.activeRouter.navigate(["products","product",productNumber]);
   }
 
 

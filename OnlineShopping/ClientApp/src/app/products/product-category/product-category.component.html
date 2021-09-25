@@ -22,7 +22,7 @@
             </mat-icon>
             </button>
 
-          <button mat-raised-button color="warn">
+          <button mat-raised-button color="warn" (click)="goToProduct(item.id)">
             <mat-icon class="material-icons">
               article
             </mat-icon>
@@ -37,10 +37,11 @@
             </mat-icon>
             </button>
 
-          <button mat-raised-button color="warn">
+          <button mat-raised-button color="warn" (click)="goToProduct(item.id)">
             <mat-icon class="material-icons">
               article
             </mat-icon>
+
             </button>
         </mat-card-actions>
       </mat-card>

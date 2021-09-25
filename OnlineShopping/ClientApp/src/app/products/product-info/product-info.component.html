@@ -1,0 +1,58 @@
+<ng-container *ngIf="this.singleProduct == null then loader else data">
+
+</ng-container>
+
+<ng-template #data>
+  <mat-card>
+    <div class="row d-flex justify-content-space">
+    <div class="col-md-3">
+      <mat-card class="text-center">
+      <img [src]="singleProduct.image" class="tumbnail " [alt]="singleProduct.productName" />
+      <h3> {{singleProduct.productName}}</h3>
+      </mat-card>
+
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex justify-content-start">
+        <dl>
+          <dt>Product Name</dt>
+          <dd> {{singleProduct.productName}}</dd>
+          <dt>Company Name</dt>
+          <dd>{{singleProduct.company}}</dd>
+
+          <dt>Price</dt>
+          <dd>{{singleProduct.price}} LE</dd>
+        </dl>
+
+
+    </div>
+
+    <mat-card-actions class="actions-desktop">
+      <button (click)="addCart(item.id,item.name,item.image)" mat-raised-button color="primary">
+        <mat-icon class="material-icons">
+          shopping_cart
+        </mat-icon>
+        </button>
+
+
+    </mat-card-actions>
+
+
+    <mat-card-actions class=" actions-mobile" >
+      <button (click)="addCart(item.id,item.name,item.image)" mat-raised-button color="primary">
+        <mat-icon class="material-icons">
+          shopping_cart
+        </mat-icon>
+        </button>
+
+
+    </mat-card-actions>
+    </div>
+
+  </div>
+  </mat-card>
+
+</ng-template>
+<ng-template #loader>
+  loading ...
+</ng-template>

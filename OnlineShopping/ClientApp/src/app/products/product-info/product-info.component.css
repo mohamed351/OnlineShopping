@@ -1,0 +1,25 @@
+.justify-content-space{
+  justify-content: space-evenly;
+}
+.price-product{
+  font-size: 20px;
+  font-weight: bold;
+  color:#3F51B5;
+}
+.actions-mobile{
+  display: none;
+}
+@media only screen and (max-width: 60rem)  {
+  .col-md-3{
+    width: 50%;
+  }
+  .actions-desktop{
+    display: none ;
+  }
+  .actions-mobile{
+    display: flex;
+    justify-content: center;
+  }
+
+
+}

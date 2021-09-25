@@ -10,9 +10,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIcon} from '@angular/material/icon';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductInfoComponent } from './product-info/product-info.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductCategoryComponent, ShoppingCartComponent],
+  declarations: [ProductListComponent, ProductCategoryComponent, ShoppingCartComponent, ProductInfoComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

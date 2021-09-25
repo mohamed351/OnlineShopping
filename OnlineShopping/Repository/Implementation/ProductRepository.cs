@@ -18,7 +18,14 @@ namespace OnlineShopping.Repository.Implementation
             _context = context;
         }
 
-       
+        public override Product GetByID(int Key)
+        {
+            return _context.Set<Product>()
+                .Include(a => a.Category)
+                .Include(a => a.Company)
+                .Include(a => a.ProductSize)
+                .FirstOrDefault(a=> a.ID == Key);
+        }
 
         public  DataTableViewModel<ProductSelectViewModel> GetDataTableProduct(int start = 0, int lenght = 10, Func<Product, bool> search = null, Func<Product, int> OrderBy = null)
         {
